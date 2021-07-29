@@ -20,31 +20,30 @@ class DiscountCalculatorTest {
 
         assertEquals(expected, actual);
     }
-
     @Test
-    void shouldNotGiveDiscountWhenPriceIs499(){
-        var price = 499.99;
+    void shouldGive5PercentDiscountWhenPriceIsLessThan500(){
+        var price = 400.00;
 
-        var priceWithoutDiscount = discountCalculator.calculate(price);
+        var priceWithDiscount = discountCalculator.calculate(price);
 
-        assertEquals(price, priceWithoutDiscount);
+        assertEquals(380, priceWithDiscount);
     }
 
     @Test
-    void shouldNotGiveDiscountWhenPriceIs450(){
-        var price = 450d;
-
-        var priceWithoutDiscount = discountCalculator.calculate(price);
-
-        assertEquals(price, priceWithoutDiscount);
-    }
-
-    @Test
-    void shouldGiveDiscountWhenPriceIs500(){
+    void shouldGive10PercentDiscountWhenPriceIs500(){
         var price = 500.00;
 
         var priceWithDiscount = discountCalculator.calculate(price);
 
         assertEquals(450.00, priceWithDiscount);
+    }
+
+    @Test
+    void shouldGive20DiscountWhenPriceIs1000(){
+        var price = 1000.00;
+
+        var priceWithDiscount = discountCalculator.calculate(price);
+
+        assertEquals(800.00, priceWithDiscount);
     }
 }
